@@ -2119,7 +2119,7 @@ bool UpdateNnetWithMaxChange(const Nnet &delta_nnet,
       if (uc == NULL)
         KALDI_ERR << "Updatable component does not inherit from class "
                   << "UpdatableComponent; change this code.";
-      BaseFloat max_param_change_per_comp = uc->MaxChange();
+      BaseFloat max_param_change_per_comp = uc->MaxChange(0.0001);
       KALDI_ASSERT(max_param_change_per_comp >= 0.0);
       BaseFloat dot_prod = uc->DotProduct(*uc);
       if (max_param_change_per_comp != 0.0 &&
