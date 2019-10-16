@@ -4588,8 +4588,18 @@ template<typename Real> static void UnitTestTriVecSolver() {
   }
 }
 
+template<typename Real> static void UnitTestAddMatrix() {
+    Matrix<Real> A(15, 15);
+    A.Set(1.0);
+    Matrix<Real> B(A);
+    B.AddMat(1.0, A);
+    KALDI_ASSERT(A.Dim() == B.Dim())
+    KALDI_LOG << "MATRIX A" << A << "MATRIX B" << B;
+  }
+}
 
 template<typename Real> static void MatrixUnitTest(bool full_test) {
+  UnitTestAddMatrix<Real>();
   UnitTestLinearCgd<Real>();
   UnitTestGeneralMatrix<BaseFloat>();
   UnitTestTridiagonalize<Real>();
